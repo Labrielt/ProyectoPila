@@ -1,0 +1,131 @@
+<template>
+  <v-layout row wrap>
+    <v-flex class="mt" v-for="libro in libros" :key="libro.id" xs6>
+      <v-card>
+        <div style="display: flex;">
+          <img src="../assets/logo.png" alt="Portada">
+          <div>
+            <v-card-title primary-title>
+              <div>
+                <div class="headline">
+                  <v-btn text :to="`/libros/${libro.titulo}`">{{ libro.titulo }}</v-btn>
+                </div>
+                <span>{{ libro.genero }} &middot; {{ libro.autor }}</span>
+              </div>
+            </v-card-title>
+            <v-card-text>
+              {{ libro.descripcion }}
+            </v-card-text>
+          </div>
+        </div>
+      </v-card>
+    </v-flex>
+  </v-layout>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      libros: [
+        {
+          id: 1,
+          titulo: 'Libro 1',
+          autor: 'Autor 1',
+          genero: 'Genero 1',
+          descripcion: 'Lorem ipsum dolor sit amet, consectetur'
+          + 'adipiscing elit.Phasellus porta libero ut orci cursus'
+          + 'aliquam. Pellentesque a dolor sodales orci vulputate'
+          + 'pulvinar et eget tortor. Donec congue mi in pretium '
+          + 'lacinia. Nunc sed condimentum metus. Class aptent taciti sociosqu ad litora',
+          imagen: '../assets/logo.png',
+        },
+        {
+          id: 2,
+          titulo: 'Libro 2',
+          autor: 'Autor 2',
+          genero: 'Genero 2',
+          descripcion: 'Lorem ipsum dolor sit amet, consectetur'
+          + 'adipiscing elit.Phasellus porta libero ut orci cursus'
+          + 'aliquam. Pellentesque a dolor sodales orci vulputate'
+          + 'pulvinar et eget tortor. Donec congue mi in pretium '
+          + 'lacinia. Nunc sed condimentum metus. Class aptent taciti sociosqu ad litora',
+          imagen: '../assets/logo.png',
+        },
+        {
+          id: 1,
+          titulo: 'Libro 1',
+          autor: 'Autor 1',
+          genero: 'Genero 1',
+          descripcion: 'Lorem ipsum dolor sit amet, consectetur'
+          + 'adipiscing elit.Phasellus porta libero ut orci cursus'
+          + 'aliquam. Pellentesque a dolor sodales orci vulputate'
+          + 'pulvinar et eget tortor. Donec congue mi in pretium '
+          + 'lacinia. Nunc sed condimentum metus. Class aptent taciti sociosqu ad litora',
+          imagen: '../assets/logo.png',
+        },
+        {
+          id: 2,
+          titulo: 'Libro 2',
+          autor: 'Autor 2',
+          genero: 'Genero 2',
+          descripcion: 'Lorem ipsum dolor sit amet, consectetur'
+          + 'adipiscing elit.Phasellus porta libero ut orci cursus'
+          + 'aliquam. Pellentesque a dolor sodales orci vulputate'
+          + 'pulvinar et eget tortor. Donec congue mi in pretium '
+          + 'lacinia. Nunc sed condimentum metus. Class aptent taciti sociosqu ad litora',
+          imagen: '../assets/logo.png',
+        },
+        {
+          id: 1,
+          titulo: 'Libro 1',
+          autor: 'Autor 1',
+          genero: 'Genero 1',
+          descripcion: 'Lorem ipsum dolor sit amet, consectetur'
+          + 'adipiscing elit.Phasellus porta libero ut orci cursus'
+          + 'aliquam. Pellentesque a dolor sodales orci vulputate'
+          + 'pulvinar et eget tortor. Donec congue mi in pretium '
+          + 'lacinia. Nunc sed condimentum metus. Class aptent taciti sociosqu ad litora',
+          imagen: '../assets/logo.png',
+        },
+        {
+          id: 2,
+          titulo: 'Libro 2',
+          autor: 'Autor 2',
+          genero: 'Genero 2',
+          descripcion: 'Lorem ipsum dolor sit amet, consectetur'
+          + 'adipiscing elit.Phasellus porta libero ut orci cursus'
+          + 'aliquam. Pellentesque a dolor sodales orci vulputate'
+          + 'pulvinar et eget tortor. Donec congue mi in pretium '
+          + 'lacinia. Nunc sed condimentum metus. Class aptent taciti sociosqu ad litora',
+          imagen: '../assets/logo.png',
+        },
+        {
+          id: 1,
+          titulo: 'Libro 1',
+          autor: 'Autor 1',
+          genero: 'Genero 1',
+          descripcion: 'Lorem ipsum dolor sit amet, consectetur'
+          + 'adipiscing elit.Phasellus porta libero ut orci cursus'
+          + 'aliquam. Pellentesque a dolor sodales orci vulputate'
+          + 'pulvinar et eget tortor. Donec congue mi in pretium '
+          + 'lacinia. Nunc sed condimentum metus. Class aptent taciti sociosqu ad litora',
+          imagen: '../assets/logo.png',
+        },
+        {
+          id: 2,
+          titulo: 'Libro 2',
+          autor: 'Autor 2',
+          genero: 'Genero 2',
+          descripcion: 'Lorem ipsum dolor sit amet, consectetur'
+          + 'adipiscing elit.Phasellus porta libero ut orci cursus'
+          + 'aliquam. Pellentesque a dolor sodales orci vulputate'
+          + 'pulvinar et eget tortor. Donec congue mi in pretium '
+          + 'lacinia. Nunc sed condimentum metus. Class aptent taciti sociosqu ad litora',
+          imagen: '../assets/logo.png',
+        },
+      ],
+    };
+  },
+};
+</script>
