@@ -42,15 +42,24 @@
           </router-link>
 
           <router-link v-bind:to="{ name: 'Categoria',
-           params: { categoria: 'edad' }}" class="side_bar_link">
+           params: { categoria: 'idioma' }}" class="side_bar_link">
             <v-list-item>
               <v-list-item-action>
-                <v-icon>family_restroom</v-icon>
+                <v-icon>language</v-icon>
               </v-list-item-action>
-              <v-list-item-content>Edad</v-list-item-content>
+              <v-list-item-content>Idima</v-list-item-content>
             </v-list-item>
           </router-link>
 
+          <router-link v-bind:to="{ name: 'Categoria',
+           params: { categoria: 'editorial' }}" class="side_bar_link">
+            <v-list-item>
+              <v-list-item-action>
+                <v-icon>apartment</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>Editorial</v-list-item-content>
+            </v-list-item>
+          </router-link>
         </v-list-group>
 
         <router-link v-bind:to="{name: 'Contacto'}" class="side_bar_link">
@@ -74,6 +83,11 @@
         <v-btn text color="white" v-bind:to="{name: 'Login'}">
           <v-icon>account_circle</v-icon>
           Inciar session</v-btn>
+      </v-toolbar-items>
+      <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn text color="white" v-bind:to="{name: 'AgregarLibro'}">
+          <v-icon>add_circle</v-icon>
+        </v-btn>
       </v-toolbar-items>
     </v-app-bar>
 

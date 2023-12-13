@@ -46,5 +46,31 @@ a.side_bar_link {
 }
 
 .mt {
-    margin-top: 5px;
+    margin-top: 10px;
 }
+
+.mb {
+    margin-bottom: 5px;
+}
+
+.titulo_azul {
+    background-color: rgba(2, 2, 191, 0.779);
+    color: white;
+}
+
+.prueba {
+    margin-top: 20px;
+}
+
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.v-banner__content {
+  background: rgba(0, 0, 0, 0.5);
+}
+

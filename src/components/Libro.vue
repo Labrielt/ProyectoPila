@@ -34,6 +34,7 @@
             </v-layout>
 
             <v-card-text>{{ libro.sinopsis }}</v-card-text>
+
           </v-flex>
         </v-layout>
 

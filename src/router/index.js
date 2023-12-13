@@ -6,6 +6,7 @@ import Libro from '@/components/Libro';
 import Categoria from '@/components/Categorias';
 import Login from '@/components/Login';
 import Registro from '@/components/Registro';
+import AgregarLibro from '@/components/AgregarLibro';
 
 Vue.use(Router);
 
@@ -41,6 +42,11 @@ export default new Router({
       path: '/registro',
       name: 'Registro',
       component: Registro,
+    },
+    {
+      path: '/AgregarLibro',
+      name: 'AgregarLibro',
+      component: AgregarLibro,
     },
   ],
 });
