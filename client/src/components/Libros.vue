@@ -7,22 +7,22 @@
      </v-breadcrumbs>
     <v-tabs >
       <v-tab v-for="categoria in categorias" :key="categoria.id"
-       style="background-color: black; color: white;" >
+       class="dark" >
         {{ categoria.nombre }}
       </v-tab>
 
-      <v-tab-item  style="background-color: black; color: white;"
+      <v-tab-item  class="dark"
        v-for="categoria in categorias" :key="categoria.id">
         <v-layout row wrap>
-          <v-flex class="mt" v-for="libro in paginatedLibros" :key="libro.id" xs6>
-            <v-card>
+          <v-flex  xs12  md6   class="mt" v-for="libro in paginatedLibros" :key="libro.id" >
+            <v-card  :href="`/libros/${libro.titulo}`" class="libro" >
               <div style="display: flex;">
-                <img src="../assets/logo.png" alt="Portada">
+                <img class="imagen" src="../assets/logo.png" alt="Portada">
                 <div>
                   <v-card-title primary-title>
                     <div>
                       <div class="headline">
-                        <v-btn text :to="`/libros/${libro.titulo}`">{{ libro.titulo }}</v-btn>
+                        <h5> {{ libro.titulo }}</h5>
                       </div>
                       <span>{{ libro.genero }} &middot; {{ libro.autor }}</span>
                     </div>
@@ -38,7 +38,7 @@
 
       </v-tab-item>
     </v-tabs>
-    <v-pagination style="margin-top: 5%;"
+    <v-pagination class="mt-5"
         v-model="currentPage"
         :length="Math.ceil(libros.length / itemsPerPage)"
         ></v-pagination>

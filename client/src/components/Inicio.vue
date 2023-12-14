@@ -9,28 +9,27 @@
         height="400"
         hide-delimiters
         progress="primary"
-        style="margin-top: 5%;"
+        class="mt-5"
         >
         <v-carousel-item
         src="https://i.pinimg.com/originals/8d/be/96/8dbe966e815f9aa53bd12d9bb640b83c.gif" >
-            <div class="d-flex fill-height justify-center align-center flex-column"
-             style="background: rgba(0, 0, 0, 0.5); position: absolute; width: 100%; height: 100%;">
-              <div class="text-h2" style="color: white;">
+            <div class="carusel_items"
+            >
+              <div class="text-h2">
                  Bienvenido
               </div>
-              <div class="text-h3" style="color: white;">
+              <div class="text-h3">
                  Disfruta de Nuestra coleccion
               </div>
             </div>
         </v-carousel-item>
 
         <v-carousel-item  src="https://i.pinimg.com/originals/77/01/6d/77016dc7f0b329c9197796587a65cebe.gif" >
-            <div class="d-flex fill-height justify-center align-center flex-column"
-             style="background: rgba(0, 0, 0, 0.5); position: absolute; width: 100%; height: 100%;">
-              <div class="text-h2" style="color: white;">
+            <div class="carusel_items">
+              <div class="text-h2">
                  Puedes hacerte una Cuenta
               </div>
-              <div class="text-h3" style="color: white;">
+              <div class="text-h3">
                  Mira a tu izquierda , veras que no es ahi
               </div>
             </div>
@@ -38,21 +37,19 @@
 
         <v-carousel-item
          src="https://i.pinimg.com/originals/42/88/b0/4288b0367a47ca15e89aeab9862717c8.gif" >
-            <div class="d-flex fill-height justify-center align-center flex-column"
-             style="background: rgba(0, 0, 0, 0.5); position: absolute; width: 100%; height: 100%;">
-              <div class="text-h2" style="color: white;">
+            <div class="carusel_items">
+              <div class="text-h2">
                   Hazte con una Nueva Historia
               </div>
-              <div class="text-h3" style="color: white;">
+              <div class="text-h3">
                  Que puede acompañarte de por vida
               </div>
             </div>
         </v-carousel-item>
       </v-carousel>
 
-      <div class="mt" style="background-color: rgba(160, 159, 159, 0.285);
-       justify-content:space-evenly; display: flex; margin-top: 10%;">
-        <div class="d-flex fill-height  flex-column " style="padding: 10%; align-items: start;">
+      <div class="seccion_itsb">
+        <div class=" seccion_tsb">
           <H3> Categorias</H3>
           <p> Explora Nuestras Categorias</p>
           <v-btn :to="'/categorias'"> Explorar</v-btn>
@@ -61,16 +58,17 @@
         src="https://cdn.pixabay.com/photo/2019/05/14/21/50/storytelling-4203628_1280.jpg">
       </div>
 
-    <H3 class="mt" style="margin-top: 5%; margin-bottom: 1%;"> Lista de Libros</H3>
-    <v-flex   class="mt" v-for="libro in paginatedLibros" :key="libro.id" xs6>
-      <v-card>
-        <div style="display: flex;">
-          <img src="../assets/logo.png" alt="Portada">
+    <H3 class="margen_tb"> Lista de Libros</H3>
+    <v-flex  xs12  lg6 styles="padding: 10px;"
+     v-for="libro in paginatedLibros" :key="libro.id" class="mt">
+      <v-card  :href="`/libros/${libro.titulo}`"  class="libro">
+        <div class="d-flex">
+          <img class="imagen" src="../assets/logo.png" alt="Portada">
           <div>
-            <v-card-title primary-title>
+            <v-card-title primary-title >
               <div>
                 <div class="headline">
-                  <v-btn text :to="`/libros/${libro.titulo}`">{{ libro.titulo }}</v-btn>
+                  <h5> {{ libro.titulo }}</h5>
                 </div>
                 <span>{{ libro.genero }} &middot; {{ libro.autor }}</span>
               </div>
