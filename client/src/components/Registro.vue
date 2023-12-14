@@ -47,6 +47,10 @@
 </template>
 
 <script>
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://localhost:8081';
+
 export default {
   data() {
     return {
@@ -72,6 +76,23 @@ export default {
   },
 
   methods: {
+    async enviar() {
+      try {
+        const respuesta = await axios.post('/api/registro', {
+          nombre: this.nombre,
+          email: this.email,
+          contrasenha: this.contrasenha,
+        });
+
+        // Manejar la respuesta (puede redirigir al usuario, mostrar un mensaje, etc.)
+        // eslint-disable-next-line no-console
+        console.log(respuesta.data.mensaje);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error);
+        // Manejar errores
+      }
+    },
     registro() {
       this.$swal(
         'Grandioso!',
