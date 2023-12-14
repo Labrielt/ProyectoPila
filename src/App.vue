@@ -47,7 +47,7 @@
               <v-list-item-action>
                 <v-icon>language</v-icon>
               </v-list-item-action>
-              <v-list-item-content>Idima</v-list-item-content>
+              <v-list-item-content>Idioma</v-list-item-content>
             </v-list-item>
           </router-link>
 

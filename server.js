@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // conexión a mongodb
-mongoose.connect('mongodb://127.0.0.1/calif_peliculas_ad2023').then( () => {
+mongoose.connect('mongodb://127.0.0.1/libros').then( () => {
     console.log('Conexion con la base de datos realizada');
 })
 .catch(err => {
@@ -20,12 +20,12 @@ mongoose.connect('mongodb://127.0.0.1/calif_peliculas_ad2023').then( () => {
     process.exit(1);
 });
 
-fs.readdirSync('controladores').forEach(function (arch) {
-    if (arch.slice(-3) == '.js') {
-        const route = require('./controladores/' + arch);
-        route.controller(app);
-    }
-});
+//fs.readdirSync('controladores').forEach(function (arch) {
+//    if (arch.slice(-3) == '.js') {
+//        const route = require('./controladores/' + arch);
+//        route.controller(app);
+//    }
+//});
 
 router.get('/', function(req, res) {
     res.json({ mensaje: 'API Inicializada' });
