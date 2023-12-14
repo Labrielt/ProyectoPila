@@ -42,7 +42,7 @@
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn text color="white" v-bind:to="{name: 'Login'}">
           <v-icon>account_circle</v-icon>
-          Inciar session</v-btn>
+          Iniciar Sesión</v-btn>
       </v-toolbar-items>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn text color="white" v-bind:to="{name: 'AgregarLibro'}">
