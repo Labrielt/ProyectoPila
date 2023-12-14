@@ -1,0 +1,2 @@
+npm run dev / nodemon server.js en una terminal dentro de la carpeta server para iniciar el servidor
+npm run serve / npm run dev en una terminal de la carpeta client para iniciar el front
