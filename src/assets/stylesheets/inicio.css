@@ -63,16 +63,22 @@ a.side_bar_link {
     margin: 10px;
 }
 
-
-.banner-image {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
+.carrusel_fondo {
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute; width: 100%;
+    height: 100%;
 }
 
-.v-banner__content {
-  background: rgba(0, 0, 0, 0.5);
+.seccion_itsb {
+    background-color: rgba(160, 159, 159, 0.285);
+    justify-content:space-evenly;
+    display: flex;
+    margin-top: 10%;
+}
+
+.seccion_tsb{
+    padding: 10%;
+    align-items: start;
 }
 
 .contenedor {
@@ -100,5 +106,12 @@ a.side_bar_link {
     background-color: #ffffffe2;
     color: rgba(0,0,0,.87);
 }
+
+.margen_tb {
+    margin-top: 5%;
+    margin-bottom: 1%;
+}
+
+
 
 
