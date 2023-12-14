@@ -1,5 +1,5 @@
 <template>
-  <v-layout row wrap>
+  <v-layout row wrap style="margin-top: 10px;">
     <v-flex xs9>
       <!-- Libro -->
       <v-card>
@@ -12,23 +12,36 @@
             <v-card-subtitle>{{ libro.autor }} &middot; {{ libro.genero }}</v-card-subtitle>
 
             <!--  iconos -->
-            <v-layout row align-center>
-              <v-flex xs4>
+            <v-layout row style="justify-content: space-between;
+             margin-top: 1%;  margin-bottom: 1%;">
+              <v-flex xs2>
                 <v-layout column align-center>
                   <v-icon>mdi-currency-usd</v-icon>
                   <div>{{ libro.precio }}</div>
                 </v-layout>
               </v-flex>
-              <v-flex xs4>
+              <v-flex xs2>
                 <v-layout column align-center>
                   <v-icon>mdi-file-document-outline</v-icon>
-                  <div>{{ libro.numPaginas }} páginas</div>
+                  <div>{{ libro.numPaginas }} pag</div>
                 </v-layout>
               </v-flex>
-              <v-flex xs4>
+              <v-flex xs2>
                 <v-layout column align-center>
                   <v-icon>mdi-calendar</v-icon>
                   <div>{{ libro.anoPublicacion }}</div>
+                </v-layout>
+              </v-flex>
+              <v-flex xs2>
+                <v-layout column align-center>
+                  <div>ISBN</div>
+                  <div>{{ libro.ISBN }}</div>
+                </v-layout>
+              </v-flex>
+              <v-flex xs2>
+                <v-layout column align-center>
+                  <v-icon>public</v-icon>
+                  <div>{{ libro.idioma }} </div>
                 </v-layout>
               </v-flex>
             </v-layout>
@@ -108,6 +121,9 @@ export default {
         titulo: 'Título del Libro',
         autor: 'Autor del Libro',
         genero: 'Genero del Libro',
+        editorial: 'planeta',
+        idioma: 'Ingles',
+        ISBN: '1234567890',
         sinopsis: 'Lorem ipsum dolor sit amet, consectetur'
           + 'adipiscing elit.Phasellus porta libero ut orci cursus'
           + 'aliquam. Pellentesque a dolor sodales orci vulputate'

@@ -89,6 +89,7 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
+              <v-file-input label="Portada"></v-file-input>
 
               <v-btn color="primary" @click="guardar" :disabled="!valido">Guardar</v-btn>
               <v-btn @click="limpiar">Limpiar</v-btn>

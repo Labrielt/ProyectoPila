@@ -3,7 +3,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
+    color: #ffffff;
     margin-top: 60px;
     width: 100%;
 }
@@ -54,12 +54,13 @@ a.side_bar_link {
 }
 
 .titulo_azul {
-    background-color: rgba(2, 2, 191, 0.779);
+    background-color: rgba(68, 66, 66, 0.779);
     color: white;
 }
 
-.prueba {
-    margin-top: 20px;
+.items {
+    padding: 10px;
+    margin: 10px;
 }
 
 
@@ -73,4 +74,31 @@ a.side_bar_link {
 .v-banner__content {
   background: rgba(0, 0, 0, 0.5);
 }
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+}
+
+.v-slide-group__content {
+    background: black;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    position: relative;
+    -webkit-transition: .3s cubic-bezier(.25,.8,.5,1);
+    transition: .3s cubic-bezier(.25,.8,.5,1);
+    white-space: nowrap;
+    justify-content: flex-start;
+
+}
+
+.theme--light.v-card {
+    background-color: #ffffffe2;
+    color: rgba(0,0,0,.87);
+}
+
 
