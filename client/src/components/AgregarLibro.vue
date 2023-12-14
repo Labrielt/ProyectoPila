@@ -1,8 +1,8 @@
 <template>
   <v-layout align-center justify-center>
-    <v-flex xs6 >
+    <v-flex  xs12 md10 lg8  mt-10>
       <v-card >
-          <v-card-title class="titulo_azul">Agregar Libro</v-card-title>
+          <v-card-title class="titulo_form">Agregar Libro</v-card-title>
           <v-card-text>
             <v-form v-model="valido" ref="formulario" lazy-validation>
               <v-text-field

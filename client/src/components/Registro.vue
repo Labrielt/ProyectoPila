@@ -1,9 +1,9 @@
 <template>
     <v-container>
       <v-layout align-center justify-center>
-        <v-flex xs5>
+        <v-flex xs10 md8 lg6  mt-8>
           <v-card>
-            <v-card-title class="titulo_azul">Registrate</v-card-title>
+            <v-card-title class="titulo_form">Registrate</v-card-title>
             <v-card-text>
               <v-form v-model="valido" ref="formulario" lazy-validation>
                 <v-text-field
@@ -39,7 +39,7 @@
                 <v-btn @click="limpiar">Limpiar</v-btn>
               </v-form>
             </v-card-text>
-              <v-btn @click="login" text color="purple">Inicia session</v-btn>
+              <v-btn @click="login" text color="primary">Inicia session</v-btn>
           </v-card>
         </v-flex>
       </v-layout>

@@ -53,7 +53,7 @@ a.side_bar_link {
     margin-bottom: 5px;
 }
 
-.titulo_azul {
+.titulo_form {
     background-color: rgba(68, 66, 66, 0.779);
     color: white;
 }
@@ -61,12 +61,6 @@ a.side_bar_link {
 .items {
     padding: 10px;
     margin: 10px;
-}
-
-.carrusel_fondo {
-    background: rgba(0, 0, 0, 0.5);
-    position: absolute; width: 100%;
-    height: 100%;
 }
 
 .seccion_itsb {
@@ -79,6 +73,9 @@ a.side_bar_link {
 .seccion_tsb{
     padding: 10%;
     align-items: start;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .contenedor {
@@ -110,6 +107,92 @@ a.side_bar_link {
 .margen_tb {
     margin-top: 5%;
     margin-bottom: 1%;
+}
+
+.libro:hover {
+    background-color: #ffffff;
+  }
+
+.columna {
+ display: flex; flex-direction: column;
+}
+
+
+.carusel_items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute; width: 100%;
+    height: 100%;
+    color: #ffffff;
+}
+
+
+.dark {
+    background-color: black !important;
+    color: white !important;
+}
+
+.theme--light.v-tabs>.v-tabs-bar {
+    background-color: #00000005;
+}
+
+@media only screen and (max-width: 600px) {
+    .us {
+        padding: 5%; width: 80%;
+         display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-top: 5%;
+    }
+
+    .us_items{
+        margin-bottom: 10px;
+    }
+
+}
+
+@media only screen and (min-width: 600px) {
+    .us {
+        padding: 5%; width: 80%;
+         display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 5%;
+    }
+
+    .us_2 {
+        padding: 5%; width: 80%;
+         display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        margin-top: 5%;
+    }
+
+    .us_ajuste {
+        display: flex;
+        justify-content: space-between;
+    }
+    .us_items {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+
+.imagen {
+    align-self: center;
+    max-width: 100%;
+    height: 100% ;
+  }
+
+.columna_us {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 
