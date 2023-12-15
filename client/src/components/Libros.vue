@@ -7,9 +7,10 @@
      </v-breadcrumbs>
     <v-tabs >
       <v-tab v-for="categoria in categorias" :key="categoria._id"
-       class="dark" >
-        {{ categoria._id }}
-      </v-tab>
+       @click="cambiarCategoria(categoria._id)"
+       class="dark">
+      {{ categoria._id }}
+    </v-tab>
 
       <v-tab-item  class="dark"
        v-for="categoria in categorias" :key="categoria._id">
@@ -51,20 +52,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      categorias: [
-        {
-          _id: 'Ficción',
-          numLibros: 25,
-        },
-        {
-          _id: 'Ciencia Ficción',
-          numLibros: 15,
-        },
-        {
-          _id: 'Romance',
-          numLibros: 30,
-        },
-      ],
+      categorias: [],
       libros: [
         {
           id: 1,
@@ -145,22 +133,22 @@ export default {
   },
   mounted() {
     const nombreCategoria = this.$route.params.subcategoria;
-    const idSubcategoria = this.$route.params.idSubcategoria;
+    const categoria = this.$route.params.idSubcategoria;
     if (nombreCategoria === 'Autores') {
       this.obtenerAutores();
-      this.obtenerLibrosPorAutor(idSubcategoria);
+      this.obtenerLibrosPorAutor(categoria);
     }
     if (nombreCategoria === 'Generos') {
       this.obtenerGeneros();
-      this.obtenerLibrosPorGenero(idSubcategoria);
+      this.obtenerLibrosPorGenero(categoria);
     }
     if (nombreCategoria === 'Idioma') {
-      this.obtenerGeneros();
-      this.obtenerLibrosPorIdioma(idSubcategoria);
+      this.obtenerIdiomas();
+      this.obtenerLibrosPorIdioma(categoria);
     }
     if (nombreCategoria === 'Editoriales') {
-      this.obtenerGeneros();
-      this.obtenerLibrosPorEditorial(idSubcategoria);
+      this.obtenerEditoriales();
+      this.obtenerLibrosPorEditorial(categoria);
     }
   },
   methods: {
@@ -252,6 +240,26 @@ export default {
         .catch(() => {
         });
     },
+    cambiarCategoria(categoria) {
+      const nombreCategoria = this.$route.params.subcategoria;
+      switch (nombreCategoria) {
+        case 'Autores':
+          this.obtenerLibrosPorAutor(categoria);
+          break;
+        case 'Generos':
+          this.obtenerLibrosPorGenero(categoria);
+          break;
+        case 'Idioma':
+          this.obtenerLibrosPorIdioma(categoria);
+          break;
+        case 'Editoriales':
+          this.obtenerLibrosPorEditorial(categoria);
+          break;
+        default:
+          break;
+      }
+    },
+
   },
   computed: {
     paginatedLibros() {

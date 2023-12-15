@@ -3,6 +3,8 @@ const express = require('express');
 const router = express.Router();
 const librosController = require('../controllers/libros');
 const authController = require('../controllers/authController');
+const registroController = require('../controllers/registroController');
+
 
 router.get('/ver', librosController.getLibros);
 router.get('/id/:libroId', librosController.getLibroPorId);
@@ -18,5 +20,7 @@ router.post('/anadir', librosController.createLibro);
 
 // Ruta para el inicio de sesión
 router.post('/login', authController.login);
+// Ruta para el registro de usuarios
+router.post('/registro', registroController.registro);
 
 module.exports = router;

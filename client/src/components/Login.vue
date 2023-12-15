@@ -65,7 +65,7 @@ export default {
       } catch (error) {
         // eslint-disable-next-line
         console.error(error);
-        this.$swal('Error', 'Error interno del servidor', 'error');
+        this.$swal('Error', 'Datos Incorrectos', 'error');
       }
     },
 

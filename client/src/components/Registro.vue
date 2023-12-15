@@ -61,25 +61,53 @@ export default {
       confirmar_contrasenha: '',
       reglasEmail: [
         v => !!v || 'Email requerido',
-        v => /\S+@\S+\./.test(v) || 'El email debe ser válido',
+        v => /\S+@\S+\.\S+/.test(v) || 'El email debe ser válido',
       ],
-      reglasNombre: [
-        v => !!v || 'Ingresa tu Nombre de Usuario',
-      ],
-      reglasContrasenha: [
-        v => !!v || 'Ingresa tu contraseña',
-      ],
+      reglasNombre: [v => !!v || 'Ingresa tu Nombre de Usuario'],
+      reglasContrasenha: [v => !!v || 'Ingresa tu contraseña'],
       reglasContrasenhaConfirmacion: [
         v => !!v || 'Confirma tu Contraseña',
+        v =>
+          v === this.contrasenha || 'Las contraseñas deben coincidir',
       ],
     };
   },
 
   methods: {
-    async registro() {
-      // eslint-disable-next-line
-      //console.log('Hola');
+    async enviar() {
+      try {
+        const response = await axios.post('/libros/registro', {
+          email: this.email,
+          nombre: this.nombre,
+          contrasenha: this.contrasenha,
+        });
+
+        if (response.data.success) {
+          this.$swal(
+            'Registro exitoso',
+            '¡Ahora puedes iniciar sesión!',
+            'success',
+          );
+          this.$router.push('/login');
+        } else {
+          this.$swal('Error', response.data.message, 'error');
+        }
+      } catch (error) {
+        // eslint-disable-next-line
+        console.error(error);
+        this.$swal('Error', 'Error interno del servidor', 'error');
+      }
     },
+
+    limpiar() {
+      this.nombre = '';
+      this.email = '';
+      this.contrasenha = '';
+      this.confirmar_contrasenha = '';
+      this.valido = true;
+      this.$refs.formulario.reset();
+    },
+
     login() {
       this.$router.push('/login');
     },
