@@ -63,7 +63,7 @@
      v-for="libro in paginatedLibros" :key="libro.id" class="mt">
       <v-card  :href="`/libros/${libro._id}`"  class="libro">
         <div class="d-flex">
-          <img class="imagen" src="../assets/logo.png" alt="Portada">
+          <img class="imagen" :src="libro.portada" alt="Portada"> <!-- "../assets/logo.png" -->
           <div>
             <v-card-title primary-title >
               <div>
@@ -74,7 +74,7 @@
               </div>
             </v-card-title>
             <v-card-text>
-              {{ libro.descripcion }}
+              {{ libro.sinopsis }}
             </v-card-text>
           </div>
         </div>

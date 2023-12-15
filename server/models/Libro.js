@@ -11,6 +11,7 @@ const libroSchema = new mongoose.Schema({
   paginas: { type: String, required: true },
   anhopub: String,
   editorial: { type: String, required: true },
+  portada: String,
 });
 
 const Libro = mongoose.model('Libro', libroSchema);
