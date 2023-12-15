@@ -17,7 +17,7 @@
 
           <div  class="us_items">
           <v-icon>account_circle</v-icon>
-          Cesar Gabriel Zamora Morales 20130849 </div>
+          Shalom Isai Salazar Arguijo 20130805 </div>
 
           <div  class="us_items">
           <v-icon>account_circle</v-icon>
@@ -41,7 +41,7 @@
 
           <div class="us_items">
           <v-icon>account_circle</v-icon>
-          alu.20130849 @correo.itlalaguna.edu.mx </div>
+          alu.20130805 @correo.itlalaguna.edu.mx </div>
 
           <div class="us_items">
           <v-icon>account_circle</v-icon>

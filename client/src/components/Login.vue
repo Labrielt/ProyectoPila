@@ -26,6 +26,8 @@
   </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -41,17 +43,41 @@ export default {
     };
   },
   methods: {
-    login() {
-      this.$swal(
-        'Grandioso!',
-        'Session Iniciada',
-        'success',
-      );
-      this.$router.push({ name: 'Inicio' });
-      this.$refs.formulario.reset();
+    async login() {
+      // Verificar la validez del formulario
+      if (!this.$refs.formulario.validate()) {
+        this.$swal('Error', 'Por favor, completa el formulario correctamente', 'error');
+        return;
+      }
+      try {
+        const response = await axios.post('http://localhost:8081/libros/login', {
+          email: this.email,
+          password: this.password,
+        });
+
+        if (response.data.success) {
+          this.$swal('Grandioso!', 'Sesión iniciada', 'success');
+          this.$router.push({ name: 'Inicio' });
+          this.$refs.formulario.reset();
+        } else {
+          this.$swal('Error', 'Credenciales incorrectas', 'error');
+        }
+      } catch (error) {
+        // eslint-disable-next-line
+        console.error(error);
+        this.$swal('Error', 'Datos Incorrectos', 'error');
+      }
     },
+
     registro() {
       this.$router.push('./registro');
+    },
+
+    limpiar() {
+      this.email = '';
+      this.password = '';
+      this.valido = true;
+      this.$refs.formulario.reset();
     },
   },
 };

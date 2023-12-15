@@ -89,7 +89,10 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <v-file-input label="Portada"></v-file-input>
+              <v-text-field
+                label="Portada"
+                v-model="portada"
+              ></v-text-field>
 
               <v-btn color="primary" @click="guardar" :disabled="!valido">Guardar</v-btn>
               <v-btn @click="limpiar">Limpiar</v-btn>
@@ -117,6 +120,7 @@ export default {
     precio: '',
     paginas: '',
     anhopub: '',
+    portada: '',
     reglasTitulo: [
       v => !!v || 'El libro es requerido',
     ],
@@ -166,15 +170,16 @@ export default {
             paginas: this.paginas,
             anhopub: this.anhopub,
             editorial: this.editorial,
+            portada: this.portada,
           },
-          url: 'http://localhost:8081/libros',
+          url: 'http://localhost:8081/libros/anadir',
           headers: {
             'Content-Type': 'application/json',
           },
         })
           .then(() => {
             this.$swal(
-              'Grandioso!',
+              'Maravilloso!',
               'Libro Guardado satisfactoriamente',
               'success',
             );

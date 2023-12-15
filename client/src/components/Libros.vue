@@ -6,18 +6,19 @@
         </template>
      </v-breadcrumbs>
     <v-tabs >
-      <v-tab v-for="categoria in categorias" :key="categoria.id"
-       class="dark" >
-        {{ categoria.nombre }}
-      </v-tab>
+      <v-tab v-for="categoria in categorias" :key="categoria._id"
+       @click="cambiarCategoria(categoria._id)"
+       class="dark">
+      {{ categoria._id }}
+    </v-tab>
 
       <v-tab-item  class="dark"
-       v-for="categoria in categorias" :key="categoria.id">
+       v-for="categoria in categorias" :key="categoria._id">
         <v-layout row wrap>
-          <v-flex  xs12  md6   class="mt" v-for="libro in paginatedLibros" :key="libro.id" >
-            <v-card  :href="`/libros/${libro.titulo}`" class="libro" >
+          <v-flex  xs12  md6   class="mt" v-for="libro in paginatedLibros" :key="libro._id" >
+            <v-card  :href="`/libros/${libro._id}`" class="libro" >
               <div style="display: flex;">
-                <img class="imagen" src="../assets/logo.png" alt="Portada">
+                <img class="imagen" :src="libro.portada" alt="Portada">
                 <div>
                   <v-card-title primary-title>
                     <div>
@@ -28,7 +29,7 @@
                     </div>
                   </v-card-title>
                   <v-card-text>
-                    {{ libro.descripcion }}
+                    {{ libro.sinopsis }}
                   </v-card-text>
                 </div>
               </div>
@@ -46,26 +47,12 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
-      categorias: [
-        {
-          id: 1,
-          nombre: 'Ficción',
-          numLibros: 25,
-        },
-        {
-          id: 2,
-          nombre: 'Ciencia Ficción',
-          numLibros: 15,
-        },
-        {
-          id: 3,
-          nombre: 'Romance',
-          numLibros: 30,
-        },
-      ],
+      categorias: [],
       libros: [
         {
           id: 1,
@@ -144,6 +131,136 @@ export default {
       itemsPerPage: 4,
     };
   },
+  mounted() {
+    const nombreCategoria = this.$route.params.subcategoria;
+    const categoria = this.$route.params.idSubcategoria;
+    if (nombreCategoria === 'Autores') {
+      this.obtenerAutores();
+      this.obtenerLibrosPorAutor(categoria);
+    }
+    if (nombreCategoria === 'Generos') {
+      this.obtenerGeneros();
+      this.obtenerLibrosPorGenero(categoria);
+    }
+    if (nombreCategoria === 'Idioma') {
+      this.obtenerIdiomas();
+      this.obtenerLibrosPorIdioma(categoria);
+    }
+    if (nombreCategoria === 'Editoriales') {
+      this.obtenerEditoriales();
+      this.obtenerLibrosPorEditorial(categoria);
+    }
+  },
+  methods: {
+    async obtenerLibrosPorAutor(autor) {
+      try {
+        const respuesta = await axios.get(`http://localhost:8081/libros/librosPorAutor/${autor}`);
+        this.libros = respuesta.data;
+      } catch (error) {
+        this.snackbar = true;
+      }
+    },
+    async obtenerLibrosPorGenero(genero) {
+      try {
+        const respuesta = await axios.get(`http://localhost:8081/libros/librosPorGenero/${genero}`);
+        this.libros = respuesta.data;
+      } catch (error) {
+        this.snackbar = true;
+      }
+    },
+    async obtenerLibrosPorIdioma(idioma) {
+      try {
+        const respuesta = await axios.get(`http://localhost:8081/libros/librosPorIdioma/${idioma}`);
+        this.libros = respuesta.data;
+      } catch (error) {
+        this.snackbar = true;
+      }
+    },
+    async obtenerLibrosPorEditorial(editorial) {
+      try {
+        const respuesta = await axios.get(`http://localhost:8081/libros/librosPorEditorial/${editorial}`);
+        this.libros = respuesta.data;
+      } catch (error) {
+        this.snackbar = true;
+      }
+    },
+    async obtenerGeneros() {
+      return axios({
+        method: 'get',
+        url: 'http://localhost:8081/libros/generos',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((respuesta) => {
+          this.categorias = respuesta.data;
+        })
+        .catch(() => {
+        });
+    },
+    async obtenerAutores() {
+      return axios({
+        method: 'get',
+        url: 'http://localhost:8081/libros/autores',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((respuesta) => {
+          this.categorias = respuesta.data;
+        })
+        .catch(() => {
+        });
+    },
+    async obtenerIdiomas() {
+      return axios({
+        method: 'get',
+        url: 'http://localhost:8081/libros/idiomas',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((respuesta) => {
+          this.categorias = respuesta.data;
+        })
+        .catch(() => {
+        });
+    },
+    async obtenerEditoriales() {
+      return axios({
+        method: 'get',
+        url: 'http://localhost:8081/libros/editoriales',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((respuesta) => {
+          this.categorias = respuesta.data;
+        })
+        .catch(() => {
+        });
+    },
+    cambiarCategoria(categoria) {
+      const nombreCategoria = this.$route.params.subcategoria;
+      switch (nombreCategoria) {
+        case 'Autores':
+          this.obtenerLibrosPorAutor(categoria);
+          break;
+        case 'Generos':
+          this.obtenerLibrosPorGenero(categoria);
+          break;
+        case 'Idioma':
+          this.obtenerLibrosPorIdioma(categoria);
+          break;
+        case 'Editoriales':
+          this.obtenerLibrosPorEditorial(categoria);
+          break;
+        default:
+          break;
+      }
+    },
+
+  },
   computed: {
     paginatedLibros() {
       const startIndex = (this.currentPage - 1) * this.itemsPerPage;
@@ -166,8 +283,6 @@ export default {
 
       return items;
     },
-  },
-  methods: {
   },
 };
 </script>

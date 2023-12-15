@@ -185,8 +185,8 @@ a.side_bar_link {
 
 .imagen {
     align-self: center;
-    max-width: 100%;
-    height: 100% ;
+    max-width: 25%;
+    max-height: 25%;
   }
 
 .columna_us {

@@ -23,19 +23,19 @@
               <v-flex xs2>
                 <v-layout column align-center>
                   <v-icon>mdi-file-document-outline</v-icon>
-                  <div>{{ libro.numPaginas }} pag</div>
+                  <div>{{ libro.paginas }} pag</div>
                 </v-layout>
               </v-flex>
               <v-flex xs2>
                 <v-layout column align-center>
                   <v-icon>mdi-calendar</v-icon>
-                  <div>{{ libro.anoPublicacion }}</div>
+                  <div>{{ libro.anhopub }}</div>
                 </v-layout>
               </v-flex>
               <v-flex xs2>
                 <v-layout column align-center>
                   <div>ISBN</div>
-                  <div>{{ libro.ISBN }}</div>
+                  <div>{{ libro.isbn }}</div>
                 </v-layout>
               </v-flex>
               <v-flex xs2>
@@ -110,7 +110,7 @@
         <v-card-text>
           <v-form v-model="valido" ref="formulario" lazy-validation>
             <v-subheader>Precio a Pagar</v-subheader>
-            <div>{{ libro.precio }}</div>
+            <div>${{ libro.precio }}</div>
             <v-text-field  label='Dirección de Envío'
             :rules="reglasDireccion" required></v-text-field>
             <v-select label='Opciones de Pago'
@@ -126,6 +126,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -176,7 +178,20 @@ export default {
       ],
     };
   },
+  mounted() {
+    // Obtén el ID del libro desde los parámetros de la ruta
+    const libroId = this.$route.params.id;
+    this.cargarLibro(libroId);
+  },
   methods: {
+    async cargarLibro(id) {
+      try {
+        const respuesta = await axios.get(`http://localhost:8081/libros/id/${id}`);
+        this.libro = respuesta.data;
+      } catch (error) {
+        this.snackbar = true;
+      }
+    },
     comprarLibro() {
       this.$swal(
         'Comprado!',

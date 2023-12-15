@@ -1,11 +1,23 @@
+// models/Usuario.js
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const usuarioSchema = new mongoose.Schema({
-  nombre: String,
-  email: { type: String, unique: true },
-  contrasena: String,
+  email: { type: String, required: true, unique: true },
+  nombre: { type: String, required: true },
+  contrasenha: { type: String, required: true },
 });
 
-const Usuario = mongoose.model('Usuario', usuarioSchema);
+usuarioSchema.pre('save', async function (next) {
+  try {
+    // Hash de la contraseña antes de guardarla
+    const hashedPassword = await bcrypt.hash(this.contrasenha, 10);
+    this.contrasenha = hashedPassword;
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 
-module.exports = Usuario;
+module.exports = mongoose.model('Usuario', usuarioSchema);
+

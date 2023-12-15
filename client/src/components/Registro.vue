@@ -39,7 +39,7 @@
                 <v-btn @click="limpiar">Limpiar</v-btn>
               </v-form>
             </v-card-text>
-              <v-btn @click="login" text color="primary">Inicia session</v-btn>
+              <v-btn @click="login" text color="primary">Inicia sesion</v-btn>
           </v-card>
         </v-flex>
       </v-layout>
@@ -61,16 +61,14 @@ export default {
       confirmar_contrasenha: '',
       reglasEmail: [
         v => !!v || 'Email requerido',
-        v => /\S+@\S+\./.test(v) || 'El email debe ser válido',
+        v => /\S+@\S+\.\S+/.test(v) || 'El email debe ser válido',
       ],
-      reglasNombre: [
-        v => !!v || 'Ingresa tu Nombre de Usuario',
-      ],
-      reglasContrasenha: [
-        v => !!v || 'Ingresa tu contraseña',
-      ],
+      reglasNombre: [v => !!v || 'Ingresa tu Nombre de Usuario'],
+      reglasContrasenha: [v => !!v || 'Ingresa tu contraseña'],
       reglasContrasenhaConfirmacion: [
         v => !!v || 'Confirma tu Contraseña',
+        v =>
+          v === this.contrasenha || 'Las contraseñas deben coincidir',
       ],
     };
   },
@@ -78,30 +76,38 @@ export default {
   methods: {
     async enviar() {
       try {
-        const respuesta = await axios.post('/api/registro', {
-          nombre: this.nombre,
+        const response = await axios.post('/libros/registro', {
           email: this.email,
+          nombre: this.nombre,
           contrasenha: this.contrasenha,
         });
 
-        // Manejar la respuesta (puede redirigir al usuario, mostrar un mensaje, etc.)
-        // eslint-disable-next-line no-console
-        console.log(respuesta.data.mensaje);
+        if (response.data.success) {
+          this.$swal(
+            'Registro exitoso',
+            '¡Ahora puedes iniciar sesión!',
+            'success',
+          );
+          this.$router.push('/login');
+        } else {
+          this.$swal('Error', response.data.message, 'error');
+        }
       } catch (error) {
-        // eslint-disable-next-line no-console
+        // eslint-disable-next-line
         console.error(error);
-        // Manejar errores
+        this.$swal('Error', 'Error interno del servidor', 'error');
       }
     },
-    registro() {
-      this.$swal(
-        'Grandioso!',
-        'Ya tienes una cuenta',
-        'success',
-      );
-      this.$router.push({ name: 'login' });
+
+    limpiar() {
+      this.nombre = '';
+      this.email = '';
+      this.contrasenha = '';
+      this.confirmar_contrasenha = '';
+      this.valido = true;
       this.$refs.formulario.reset();
     },
+
     login() {
       this.$router.push('/login');
     },
