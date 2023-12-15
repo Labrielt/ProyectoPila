@@ -189,6 +189,12 @@ a.side_bar_link {
     max-height: 25%;
   }
 
+
+.imagen2 {
+align-self: center;
+    max-width: 50%;
+}
+
 .columna_us {
     align-items: center;
     display: flex;

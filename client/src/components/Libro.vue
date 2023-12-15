@@ -5,7 +5,7 @@
       <v-card>
         <v-layout row>
           <v-flex xs12 md4 style="display: flex; justify-content: center; align-items: center;">
-            <img src='@/assets/logo.png'>
+            <img class="imagen2" :src="libro.portada">
           </v-flex>
           <v-flex xs12 md8>
             <v-card-title>{{ libro.titulo }}</v-card-title>
