@@ -35,6 +35,11 @@ export default new Router({
       component: Categoria,
     },
     {
+      path: '/categorias/:subcategoria/:idSubcategoria',
+      name: 'Libros',
+      component: Libros,
+    },
+    {
       path: '/categorias/:subcategoria',
       name: 'Libros',
       component: Libros,

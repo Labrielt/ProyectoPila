@@ -2,7 +2,7 @@
   <v-layout row wrap >
     <v-tabs >
       <v-tab class="dark"
-       v-for="categoria in categorias" :key="categoria.id">
+       v-for="categoria in categorias" :key="categoria.id" @click="seleccionarCategoria(categoria)">
         {{ categoria.nombre }}
       </v-tab>
 
@@ -13,12 +13,13 @@
            :key="subcategoria.id" xs12 sm6 md4 lg3  style="padding: 10px;">
             <v-card >
               <v-card-title class="contenedor">
-                <v-btn color="primary" :to="`categorias/${categoria.nombre}`" >
-                  {{ subcategoria.titulo }}
+                <v-btn color="primary" :to="`categorias/${categoria.nombre}/${subcategoria._id}`">
+                  {{ subcategoria._id }}
                 </v-btn>
                 <span>
                   <v-icon>menu_book</v-icon>
-                  {{ subcategoria.numLibros }} Libros
+                  {{ subcategoria.numLibros }}
+                  {{ subcategoria.numLibros === 1 ? 'Libro' : 'Libros' }}
                 </span>
               </v-card-title>
             </v-card>
@@ -32,6 +33,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -41,21 +44,91 @@ export default {
         { nombre: 'Idioma' },
         { nombre: 'Editoriales' },
       ],
-      subcategorias: [
-        { titulo: 'Gabriel Garcia Marquez', numLibros: '8' },
-        { titulo: 'J.K. Rowling', numLibros: '7' },
-        { titulo: 'Haruki Murakami', numLibros: '15' },
-        { titulo: 'Jane Austen', numLibros: '6' },
-        { titulo: 'Stephen King', numLibros: '50' },
-        { titulo: 'Agatha Christie', numLibros: '66' },
-        { titulo: 'George Orwell', numLibros: '9' },
-        { titulo: 'Toni Morrison', numLibros: '11' },
-        { titulo: 'Isabel Allende', numLibros: '23' },
-        { titulo: 'Leo Tolstoy', numLibros: '4' },
-      ],
+      subcategorias: [],
       currentPage: 1,
       itemsPerPage: 8,
     };
+  },
+  mounted() {
+    this.obtenerGeneros();
+  },
+  methods: {
+    async obtenerGeneros() {
+      return axios({
+        method: 'get',
+        url: 'http://localhost:8081/tlibros/generos',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((respuesta) => {
+          this.subcategorias = respuesta.data;
+        })
+        .catch(() => {
+        });
+    },
+    async obtenerAutores() {
+      return axios({
+        method: 'get',
+        url: 'http://localhost:8081/tlibros/autores',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((respuesta) => {
+          this.subcategorias = respuesta.data;
+        })
+        .catch(() => {
+        });
+    },
+    async obtenerIdiomas() {
+      return axios({
+        method: 'get',
+        url: 'http://localhost:8081/tlibros/idiomas',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((respuesta) => {
+          this.subcategorias = respuesta.data;
+        })
+        .catch(() => {
+        });
+    },
+    async obtenerEditoriales() {
+      return axios({
+        method: 'get',
+        url: 'http://localhost:8081/tlibros/editoriales',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((respuesta) => {
+          this.subcategorias = respuesta.data;
+        })
+        .catch(() => {
+        });
+    },
+    async seleccionarCategoria(categoria) {
+      this.categoriaSeleccionada = categoria;
+      switch (categoria.nombre) {
+        case 'Generos':
+          await this.obtenerGeneros();
+          break;
+        case 'Autores':
+          await this.obtenerAutores();
+          break;
+        case 'Idioma':
+          await this.obtenerIdiomas();
+          break;
+        case 'Editoriales':
+          await this.obtenerEditoriales();
+          break;
+        default:
+          // Manejo para otras categorías si es necesario
+          break;
+      }
+    },
   },
   computed: {
     paginatedSubcategorias() {
