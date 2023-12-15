@@ -9,6 +9,14 @@ exports.getLibros = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+exports.getAutores = async (req, res) => {
+  try {
+    const autores = await Libro.distinct('autor');
+    res.json(autores);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 exports.createLibro = async (req, res) => {
   const libro = new Libro(req.body);

@@ -90,131 +90,37 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
+  name: 'Libros',
   data() {
     return {
       tab: null,
-      libros: [
-        {
-          id: 1,
-          titulo: 'Libro 1',
-          autor: 'Autor 1',
-          genero: 'Genero 1',
-          descripcion: 'Lorem ipsum dolor sit amet, consectetur'
-          + 'adipiscing elit.Phasellus porta libero ut orci cursus'
-          + 'aliquam. Pellentesque a dolor sodales orci vulputate'
-          + 'pulvinar et eget tortor. Donec congue mi in pretium '
-          + 'lacinia. Nunc sed condimentum metus. Class aptent taciti sociosqu ad litora',
-          imagen: '../assets/logo.png',
-        },
-        {
-          id: 2,
-          titulo: 'Libro 2',
-          autor: 'Autor 2',
-          genero: 'Genero 2',
-          descripcion: 'Lorem ipsum dolor sit amet, consectetur'
-          + 'adipiscing elit.Phasellus porta libero ut orci cursus'
-          + 'aliquam. Pellentesque a dolor sodales orci vulputate'
-          + 'pulvinar et eget tortor. Donec congue mi in pretium '
-          + 'lacinia. Nunc sed condimentum metus. Class aptent taciti sociosqu ad litora',
-          imagen: '../assets/logo.png',
-        },
-        {
-          id: 1,
-          titulo: 'Libro 1',
-          autor: 'Autor 1',
-          genero: 'Genero 1',
-          descripcion: 'Lorem ipsum dolor sit amet, consectetur'
-          + 'adipiscing elit.Phasellus porta libero ut orci cursus'
-          + 'aliquam. Pellentesque a dolor sodales orci vulputate'
-          + 'pulvinar et eget tortor. Donec congue mi in pretium '
-          + 'lacinia. Nunc sed condimentum metus. Class aptent taciti sociosqu ad litora',
-          imagen: '../assets/logo.png',
-        },
-        {
-          id: 2,
-          titulo: 'Libro 12',
-          autor: 'Autor 2',
-          genero: 'Genero 2',
-          descripcion: 'Lorem ipsum dolor sit amet, consectetur'
-          + 'adipiscing elit.Phasellus porta libero ut orci cursus'
-          + 'aliquam. Pellentesque a dolor sodales orci vulputate'
-          + 'pulvinar et eget tortor. Donec congue mi in pretium '
-          + 'lacinia. Nunc sed condimentum metus. Class aptent taciti sociosqu ad litora',
-          imagen: '../assets/logo.png',
-        },
-        {
-          id: 1,
-          titulo: 'Libro 102',
-          autor: 'Autor 1',
-          genero: 'Genero 1',
-          descripcion: 'Lorem ipsum dolor sit amet, consectetur'
-          + 'adipiscing elit.Phasellus porta libero ut orci cursus'
-          + 'aliquam. Pellentesque a dolor sodales orci vulputate'
-          + 'pulvinar et eget tortor. Donec congue mi in pretium '
-          + 'lacinia. Nunc sed condimentum metus. Class aptent taciti sociosqu ad litora',
-          imagen: '../assets/logo.png',
-        },
-        {
-          id: 2,
-          titulo: 'Libro 92',
-          autor: 'Autor 2',
-          genero: 'Genero 2',
-          descripcion: 'Lorem ipsum dolor sit amet, consectetur'
-          + 'adipiscing elit.Phasellus porta libero ut orci cursus'
-          + 'aliquam. Pellentesque a dolor sodales orci vulputate'
-          + 'pulvinar et eget tortor. Donec congue mi in pretium '
-          + 'lacinia. Nunc sed condimentum metus. Class aptent taciti sociosqu ad litora',
-          imagen: '../assets/logo.png',
-        },
-        {
-          id: 1,
-          titulo: 'Libro 1',
-          autor: 'Autor 1',
-          genero: 'Genero 1',
-          descripcion: 'Lorem ipsum dolor sit amet, consectetur'
-          + 'adipiscing elit.Phasellus porta libero ut orci cursus'
-          + 'aliquam. Pellentesque a dolor sodales orci vulputate'
-          + 'pulvinar et eget tortor. Donec congue mi in pretium '
-          + 'lacinia. Nunc sed condimentum metus. Class aptent taciti sociosqu ad litora',
-          imagen: '../assets/logo.png',
-        },
-        {
-          id: 2,
-          titulo: 'Libro 2',
-          autor: 'Autor 2',
-          genero: 'Genero 2',
-          descripcion: 'Lorem ipsum dolor sit amet, consectetur'
-          + 'adipiscing elit.Phasellus porta libero ut orci cursus'
-          + 'aliquam. Pellentesque a dolor sodales orci vulputate'
-          + 'pulvinar et eget tortor. Donec congue mi in pretium '
-          + 'lacinia. Nunc sed condimentum metus. Class aptent taciti sociosqu ad litora',
-          imagen: '../assets/logo.png',
-        },
-        {
-          id: 2,
-          titulo: 'Libro 404',
-          autor: 'Autor 2',
-          genero: 'Genero 2',
-          descripcion: 'Lorem ipsum dolor sit amet, consectetur'
-          + 'adipiscing elit.Phasellus porta libero ut orci cursus'
-          + 'aliquam. Pellentesque a dolor sodales orci vulputate'
-          + 'pulvinar et eget tortor. Donec congue mi in pretium '
-          + 'lacinia. Nunc sed condimentum metus. Class aptent taciti sociosqu ad litora',
-          imagen: '../assets/logo.png',
-        },
-      ],
-      slides: [
-        'First',
-        'Second',
-        'Third',
-        'Fourth',
-        'Fifth',
-      ],
+      libros: [],
       currentPage: 1,
       itemsPerPage: 4,
 
     };
+  },
+  mounted() {
+    this.obtenerLibros();
+  },
+  methods: {
+    async obtenerLibros() {
+      return axios({
+        method: 'get',
+        url: 'http://localhost:8081/tlibros/ver',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((respuesta) => {
+          this.libros = respuesta.data;
+        })
+        .catch(() => {
+        });
+    },
   },
   computed: {
     paginatedLibros() {
