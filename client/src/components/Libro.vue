@@ -60,9 +60,9 @@
           <!-- Lista de reseña -->
           <v-list>
             <v-list-item-group>
-              <v-list-item v-for="(reseña, index) in reseñas" :key="index">
+              <v-list-item v-for="(resena, index) in resenas" :key="index">
                 <v-list-item-content>
-                  <v-list-item-title>{{ reseña.usuario }}</v-list-item-title>
+                  <v-list-item-title>{{ resena.usuario }}</v-list-item-title>
                   <v-rating
                     style="height: 20% ; "
                     hover
@@ -84,7 +84,7 @@
       <v-card style="margin-top: 30px;">
         <v-card-title>Dejar una Reseña</v-card-title>
         <v-card-text>
-          <v-form v-model="valido" ref="formulario" lazy-validation>
+          <v-form v-model="valido" ref="form_resena" lazy-validation>
             <v-text-field
             label='Tu Reseña'
             :rules="reglasResena" required>
@@ -108,7 +108,7 @@
       <v-card>
         <v-card-title>Formulario de Compra</v-card-title>
         <v-card-text>
-          <v-form v-model="valido" ref="formulario" lazy-validation>
+          <v-form v-model="valido" ref="form_compra" lazy-validation>
             <v-subheader>Precio a Pagar</v-subheader>
             <div>${{ libro.precio }}</div>
             <v-text-field  label='Dirección de Envío'
@@ -132,6 +132,9 @@ export default {
   data() {
     return {
       valido: true,
+      usuario: '',
+      comentario: '',
+
       libro: {
         titulo: 'Título del Libro',
         autor: 'Autor del Libro',
@@ -153,20 +156,8 @@ export default {
         opcionPago: '',
       },
       opcionesPago: ['Tarjeta de crédito', 'Transferencia bancaria', 'PayPal'],
-      reseñas: [
-        { usuario: 'Usuario 1',
-          comentario: 'Excelente libro. Lo recomiendo totalmente.',
-          calificacion: 4,
-        },
-        { usuario: 'Usuario 2',
-          comentario: 'Una historia fascinante. No pude dejar de leerlo.',
-          calificacion: 5,
-        },
-      ],
-      nuevaReseña: {
-        usuario: '',
-        comentario: '',
-      },
+      resenas:[]
+      ,
       reglasDireccion: [
         v => !!v || 'Ingresa la Dirrecion',
       ],
@@ -182,6 +173,8 @@ export default {
     // Obtén el ID del libro desde los parámetros de la ruta
     const libroId = this.$route.params.id;
     this.cargarLibro(libroId);
+    const titulo = this.libro.titulo;
+    this.obtenerResenas();
   },
   methods: {
     async cargarLibro(id) {
@@ -199,8 +192,50 @@ export default {
         'success',
       );
     },
+    async obtenerResenas() {
+      return axios({
+        method: 'get',
+        url: `http://localhost:8081/libros/resenas`,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((respuesta) => {
+          this.resenas = respuesta;
+        })
+        .catch(() => {
+        });
+    },
     dejarReseña() {
+        return axios({
+          method: 'post',
+          data: {
+            titulo:  this.libro.titulo,
+            usuario: 'Usuario 1',
+            resena: this.comentario,
+          },
+          url: 'http://localhost:8081/libro/nuevaResena',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then(() => {
+            this.$swal(
+              'Maravilloso!',
+              'Reseña Guardado satisfactoriamente',
+              'success',
+            );
+            this.$refs.formulario.reset();
+          })
+          .catch(() => {
+            this.$swal(
+              'Error!',
+              'parece que algo salio mal',
+              'error',
+            );
+          });
 
+      return true;
     },
   },
 };

@@ -4,7 +4,7 @@ const router = express.Router();
 const librosController = require('../controllers/libros');
 const authController = require('../controllers/authController');
 const registroController = require('../controllers/registroController');
-
+const resenaController = require('../controllers/resenas');
 
 router.get('/ver', librosController.getLibros);
 router.get('/id/:libroId', librosController.getLibroPorId);
@@ -22,5 +22,10 @@ router.post('/anadir', librosController.createLibro);
 router.post('/login', authController.login);
 // Ruta para el registro de usuarios
 router.post('/registro', registroController.registro);
+
+
+// Reseñas
+router.get('/resenas', resenaController.getResenas);
+router.post('/nuevaResena', resenaController.createResena );
 
 module.exports = router;

@@ -89,7 +89,10 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <v-file-input label="Portada"></v-file-input>
+              <v-text-field
+                label="Portada:"
+                v-model="portada"
+              ></v-text-field>
 
               <v-btn color="primary" @click="guardar" :disabled="!valido">Guardar</v-btn>
               <v-btn @click="limpiar">Limpiar</v-btn>
@@ -117,6 +120,7 @@ export default {
     precio: '',
     paginas: '',
     anhopub: '',
+    portada: '',
     reglasTitulo: [
       v => !!v || 'El libro es requerido',
     ],
