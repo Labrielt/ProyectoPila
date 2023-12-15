@@ -15,7 +15,7 @@
        v-for="categoria in categorias" :key="categoria._id">
         <v-layout row wrap>
           <v-flex  xs12  md6   class="mt" v-for="libro in paginatedLibros" :key="libro._id" >
-            <v-card  :href="`/libros/${libro.titulo}`" class="libro" >
+            <v-card  :href="`/libros/${libro._id}`" class="libro" >
               <div style="display: flex;">
                 <img class="imagen" src="../assets/logo.png" alt="Portada">
                 <div>

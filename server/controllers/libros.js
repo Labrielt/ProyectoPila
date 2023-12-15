@@ -9,6 +9,20 @@ exports.getLibros = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+exports.getLibroPorId = async (req, res) => {
+  try {
+    const libroId = req.params.libroId; // asumiendo que la ruta tiene un parámetro :libroId
+    const libro = await Libro.findById(libroId);
+    
+    if (!libro) {
+      return res.status(404).json({ message: 'Libro no encontrado' });
+    }
+
+    res.json(libro);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 exports.getLibrosPorAutor = async (req, res) => {
   try {
     const autor = req.params.autor; // asumiendo que la ruta tiene un parámetro :autor
