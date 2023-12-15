@@ -90,11 +90,7 @@
                 </v-col>
               </v-row>
               <v-text-field
-<<<<<<< HEAD
                 label="Portada:"
-=======
-                label="Portada"
->>>>>>> Imagen
                 v-model="portada"
               ></v-text-field>
 

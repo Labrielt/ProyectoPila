@@ -10,11 +10,7 @@ const librosRouter = require('./routes/libros');
 app.use(bodyParser.json());
 app.use(cors());
 
-<<<<<<< HEAD
 mongoose.connect('mongodb://127.0.0.1/Libreria', { //'mongodb://127.0.0.1 -- //localhost
-=======
-mongoose.connect('mongodb://127.0.0.1/Libreria', {
->>>>>>> Imagen
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -23,7 +19,7 @@ db.on('error', console.error.bind(console, 'Error de conexión a la base de dato
 db.once('open', () => {
   console.log('Conexión exitosa a la base de datos');
 });
- 
+
 app.use('/libros', librosRouter);
 const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => {

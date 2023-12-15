@@ -4,16 +4,13 @@ const Resena = require('../models/Resena');
 
 
 exports.getResenas = async (req, res) => {
-// const titulo = req.params.titulo; // asumiendo que la ruta tiene un parámetro :titulo
-    Resena.find({} , 'titulo usuario resena')
-    .then((error, resena) => {
-        if (error) {
-            console.log(error);
-            res.send(error);
-        } else {
-            res.send({resena,});
-        }
-    });
+  //const titulo = req.params.titulo; // asumiendo que la ruta tiene un parámetro :titulo
+  try {
+    const resenas = await Resena.find();
+    res.json(resenas);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 exports.createResena = async (req, res) => {

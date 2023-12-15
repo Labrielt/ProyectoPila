@@ -60,7 +60,7 @@
           <!-- Lista de reseña -->
           <v-list>
             <v-list-item-group>
-              <v-list-item v-for="(resena, index) in resenas" :key="index">
+              <v-list-item v-for="resena in resenas" :key="resena.usuario">
                 <v-list-item-content>
                   <v-list-item-title>{{ resena.usuario }}</v-list-item-title>
                   <v-rating
@@ -156,7 +156,9 @@ export default {
         opcionPago: '',
       },
       opcionesPago: ['Tarjeta de crédito', 'Transferencia bancaria', 'PayPal'],
-      resenas:[]
+      resenas: [
+       
+      ]
       ,
       reglasDireccion: [
         v => !!v || 'Ingresa la Dirrecion',
@@ -173,8 +175,8 @@ export default {
     // Obtén el ID del libro desde los parámetros de la ruta
     const libroId = this.$route.params.id;
     this.cargarLibro(libroId);
-    const titulo = this.libro.titulo;
-    this.obtenerResenas();
+    // const titulo = this.libro.titulo;
+     this.obtenerResenas();
   },
   methods: {
     async cargarLibro(id) {
@@ -205,6 +207,7 @@ export default {
         })
         .catch(() => {
         });
+
     },
     dejarReseña() {
         return axios({
