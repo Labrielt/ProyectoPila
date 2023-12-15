@@ -12,6 +12,11 @@ import VueSwal from 'vue-swal';
 import App from './App';
 import router from './router';
 
+var path         = require( 'path'          );
+var favicon      = require( 'serve-favicon' );
+
+app.use( favicon( path.join( __dirname, 'img', 'book.ico' ) ) );
+
 
 Vue.use(BootstrapVue);
 Vue.use(Vuetify);
