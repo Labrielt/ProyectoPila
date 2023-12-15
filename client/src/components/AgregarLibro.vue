@@ -89,7 +89,7 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <v-file-input label="Portada"></v-file-input>
+              <v-file-input label="Portada" v-model="portada"></v-file-input>
 
               <v-btn color="primary" @click="guardar" :disabled="!valido">Guardar</v-btn>
               <v-btn @click="limpiar">Limpiar</v-btn>
@@ -117,6 +117,7 @@ export default {
     precio: '',
     paginas: '',
     anhopub: '',
+    portada: null,
     reglasTitulo: [
       v => !!v || 'El libro es requerido',
     ],
@@ -153,29 +154,28 @@ export default {
   methods: {
     guardar() {
       if (this.$refs.formulario.validate()) {
-        return axios({
-          method: 'post',
-          data: {
-            titulo: this.titulo,
-            sinopsis: this.sinopsis,
-            autor: this.autor,
-            isbn: this.isbn,
-            genero: this.genero,
-            idioma: this.idioma,
-            precio: this.precio,
-            paginas: this.paginas,
-            anhopub: this.anhopub,
-            editorial: this.editorial,
-          },
-          url: 'http://localhost:8081/libros/anadir',
+        const formData = new FormData();
+        formData.append('portada', this.portada);
+        formData.append('titulo', this.titulo);
+        formData.append('sinopsis', this.sinopsis);
+        formData.append('autor', this.autor);
+        formData.append('isbn', this.isbn);
+        formData.append('genero', this.genero);
+        formData.append('idioma', this.idioma);
+        formData.append('precio', this.precio);
+        formData.append('paginas', this.paginas);
+        formData.append('anhopub', this.anhopub);
+        formData.append('editorial', this.editorial);
+
+        return axios.post('http://localhost:8081/libros/anadir', formData, {
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
           },
         })
           .then(() => {
             this.$swal(
-              'Maravilloso!',
-              'Libro Guardado satisfactoriamente',
+              '¡Maravilloso!',
+              'Libro guardado satisfactoriamente',
               'success',
             );
             this.$router.push({ name: 'Inicio' });
@@ -185,7 +185,6 @@ export default {
             this.$swal();
           });
       }
-
       return true;
     },
     limpiar() {

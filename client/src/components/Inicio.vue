@@ -63,7 +63,7 @@
      v-for="libro in paginatedLibros" :key="libro.id" class="mt">
       <v-card  :href="`/libros/${libro._id}`"  class="libro">
         <div class="d-flex">
-          <img class="imagen" src="../assets/logo.png" alt="Portada">
+          <img class="imagen" src="libro.portada" alt="Portada">
           <div>
             <v-card-title primary-title >
               <div>
@@ -108,18 +108,16 @@ export default {
   },
   methods: {
     async obtenerLibros() {
-      return axios({
-        method: 'get',
-        url: 'http://localhost:8081/libros/ver',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((respuesta) => {
-          this.libros = respuesta.data;
-        })
-        .catch(() => {
-        });
+      try {
+        const respuesta = await axios.get('http://localhost:8081/libros/ver');
+        this.libros = respuesta.data.map(libro => ({
+          ...libro,
+          portada: `http://localhost:8081/uploads/${libro.portada}`, // Ajusta la ruta según tu estructura de archivos
+        }));
+      } catch (error) {
+        // eslint-disable-next-line
+        console.error('Error al obtener libros:', error);
+      }
     },
   },
   computed: {

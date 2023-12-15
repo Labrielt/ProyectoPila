@@ -122,6 +122,8 @@ exports.getAutores = async (req, res) => {
 
 exports.createLibro = async (req, res) => {
   const libro = new Libro(req.body);
+  const portadaname = req.file.filename;
+  libro.portada = portadaname;
   try {
     const newLibro = await libro.save();
     res.status(201).json(newLibro);

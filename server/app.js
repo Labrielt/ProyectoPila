@@ -9,6 +9,7 @@ const librosRouter = require('./routes/libros');
 
 app.use(bodyParser.json());
 app.use(cors());
+app.use('/uploads', express.static('server/uploads'));
 
 mongoose.connect('mongodb://localhost/Libreria', {
   useNewUrlParser: true,
