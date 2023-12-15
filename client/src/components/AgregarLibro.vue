@@ -90,7 +90,11 @@
                 </v-col>
               </v-row>
               <v-text-field
+<<<<<<< HEAD
                 label="Portada:"
+=======
+                label="Portada"
+>>>>>>> Imagen
                 v-model="portada"
               ></v-text-field>
 
@@ -170,6 +174,7 @@ export default {
             paginas: this.paginas,
             anhopub: this.anhopub,
             editorial: this.editorial,
+            portada: this.portada,
           },
           url: 'http://localhost:8081/libros/anadir',
           headers: {

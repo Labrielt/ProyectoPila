@@ -18,7 +18,7 @@
           <v-flex  xs12  md6   class="mt" v-for="libro in paginatedLibros" :key="libro._id" >
             <v-card  :href="`/libros/${libro._id}`" class="libro" >
               <div style="display: flex;">
-                <img class="imagen" src="../assets/logo.png" alt="Portada">
+                <img class="imagen" :src="libro.portada" alt="Portada">
                 <div>
                   <v-card-title primary-title>
                     <div>
@@ -29,7 +29,7 @@
                     </div>
                   </v-card-title>
                   <v-card-text>
-                    {{ libro.descripcion }}
+                    {{ libro.sinopsis }}
                   </v-card-text>
                 </div>
               </div>
