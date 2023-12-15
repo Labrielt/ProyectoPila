@@ -10,7 +10,7 @@ const librosRouter = require('./routes/libros');
 app.use(bodyParser.json());
 app.use(cors());
 
-mongoose.connect('mongodb://localhost/Libreria', {
+mongoose.connect('mongodb://127.0.0.1/Libreria', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
