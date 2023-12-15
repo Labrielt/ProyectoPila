@@ -76,31 +76,45 @@ export default {
   },
 
   methods: {
-    async enviar() {
+    async registro() {
       try {
+        // Mostrar en la consola los datos que se van a enviar
+        // eslint-disable-next-line no-console
+        console.log('Datos a enviar:', {
+          nombre: this.nombre,
+          email: this.email,
+          contrasenha: this.contrasenha,
+        });
+
+        // Enviar los datos al servidor para el registro
         const respuesta = await axios.post('/api/registro', {
           nombre: this.nombre,
           email: this.email,
           contrasenha: this.contrasenha,
         });
 
-        // Manejar la respuesta (puede redirigir al usuario, mostrar un mensaje, etc.)
+        // Mostrar en la consola la respuesta del servidor
         // eslint-disable-next-line no-console
-        console.log(respuesta.data.mensaje);
+        console.log(respuesta.data);
+
+        // Manejar la respuesta del servidor
+        if (respuesta.data.mensaje === 'Registro exitoso') {
+          // Registro exitoso, mostrar mensaje y redirigir al usuario
+          this.$swal('Grandioso!', 'Registro exitoso', 'success');
+          this.$router.push({ name: 'login' });
+          // Limpiar el formulario si es necesario
+          this.$refs.formulario.reset();
+        } else {
+          // El servidor respondió con un mensaje de error, mostrarlo al usuario
+          this.$swal('Error', respuesta.data.mensaje, 'error');
+        }
       } catch (error) {
+        // Mostrar en la consola cualquier error que ocurra durante la solicitud
         // eslint-disable-next-line no-console
         console.error(error);
-        // Manejar errores
+        // Mostrar un mensaje de error al usuario
+        this.$swal('Error', 'Ha ocurrido un error durante el registro', 'error');
       }
-    },
-    registro() {
-      this.$swal(
-        'Grandioso!',
-        'Ya tienes una cuenta',
-        'success',
-      );
-      this.$router.push({ name: 'login' });
-      this.$refs.formulario.reset();
     },
     login() {
       this.$router.push('/login');
