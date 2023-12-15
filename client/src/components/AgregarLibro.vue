@@ -167,7 +167,7 @@ export default {
             anhopub: this.anhopub,
             editorial: this.editorial,
           },
-          url: 'http://localhost:8081/libros',
+          url: 'http://localhost:8081/libros/anadir',
           headers: {
             'Content-Type': 'application/json',
           },

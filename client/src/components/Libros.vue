@@ -166,7 +166,7 @@ export default {
   methods: {
     async obtenerLibrosPorAutor(autor) {
       try {
-        const respuesta = await axios.get(`http://localhost:8081/tlibros/librosPorAutor/${autor}`);
+        const respuesta = await axios.get(`http://localhost:8081/libros/librosPorAutor/${autor}`);
         this.libros = respuesta.data;
       } catch (error) {
         this.snackbar = true;
@@ -174,7 +174,7 @@ export default {
     },
     async obtenerLibrosPorGenero(genero) {
       try {
-        const respuesta = await axios.get(`http://localhost:8081/tlibros/librosPorGenero/${genero}`);
+        const respuesta = await axios.get(`http://localhost:8081/libros/librosPorGenero/${genero}`);
         this.libros = respuesta.data;
       } catch (error) {
         this.snackbar = true;
@@ -182,7 +182,7 @@ export default {
     },
     async obtenerLibrosPorIdioma(idioma) {
       try {
-        const respuesta = await axios.get(`http://localhost:8081/tlibros/librosPorIdioma/${idioma}`);
+        const respuesta = await axios.get(`http://localhost:8081/libros/librosPorIdioma/${idioma}`);
         this.libros = respuesta.data;
       } catch (error) {
         this.snackbar = true;
@@ -190,7 +190,7 @@ export default {
     },
     async obtenerLibrosPorEditorial(editorial) {
       try {
-        const respuesta = await axios.get(`http://localhost:8081/tlibros/librosPorEditorial/${editorial}`);
+        const respuesta = await axios.get(`http://localhost:8081/libros/librosPorEditorial/${editorial}`);
         this.libros = respuesta.data;
       } catch (error) {
         this.snackbar = true;
@@ -199,7 +199,7 @@ export default {
     async obtenerGeneros() {
       return axios({
         method: 'get',
-        url: 'http://localhost:8081/tlibros/generos',
+        url: 'http://localhost:8081/libros/generos',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -213,7 +213,7 @@ export default {
     async obtenerAutores() {
       return axios({
         method: 'get',
-        url: 'http://localhost:8081/tlibros/autores',
+        url: 'http://localhost:8081/libros/autores',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -227,7 +227,7 @@ export default {
     async obtenerIdiomas() {
       return axios({
         method: 'get',
-        url: 'http://localhost:8081/tlibros/idiomas',
+        url: 'http://localhost:8081/libros/idiomas',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -241,7 +241,7 @@ export default {
     async obtenerEditoriales() {
       return axios({
         method: 'get',
-        url: 'http://localhost:8081/tlibros/editoriales',
+        url: 'http://localhost:8081/libros/editoriales',
         headers: {
           'Content-Type': 'application/json',
         },

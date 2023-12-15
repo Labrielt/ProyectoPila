@@ -56,7 +56,7 @@ export default {
     async obtenerGeneros() {
       return axios({
         method: 'get',
-        url: 'http://localhost:8081/tlibros/generos',
+        url: 'http://localhost:8081/libros/generos',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -70,7 +70,7 @@ export default {
     async obtenerAutores() {
       return axios({
         method: 'get',
-        url: 'http://localhost:8081/tlibros/autores',
+        url: 'http://localhost:8081/libros/autores',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -84,7 +84,7 @@ export default {
     async obtenerIdiomas() {
       return axios({
         method: 'get',
-        url: 'http://localhost:8081/tlibros/idiomas',
+        url: 'http://localhost:8081/libros/idiomas',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -98,7 +98,7 @@ export default {
     async obtenerEditoriales() {
       return axios({
         method: 'get',
-        url: 'http://localhost:8081/tlibros/editoriales',
+        url: 'http://localhost:8081/libros/editoriales',
         headers: {
           'Content-Type': 'application/json',
         },

@@ -186,7 +186,7 @@ export default {
   methods: {
     async cargarLibro(id) {
       try {
-        const respuesta = await axios.get(`http://localhost:8081/tlibros/${id}`);
+        const respuesta = await axios.get(`http://localhost:8081/libros/id/${id}`);
         this.libro = respuesta.data;
       } catch (error) {
         this.snackbar = true;

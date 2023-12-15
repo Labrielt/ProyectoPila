@@ -61,7 +61,7 @@
     <H3 class="margen_tb"> Lista de Libros</H3>
     <v-flex  xs12  lg6 styles="padding: 10px;"
      v-for="libro in paginatedLibros" :key="libro.id" class="mt">
-      <v-card  :href="`/libros/${libro.titulo}`"  class="libro">
+      <v-card  :href="`/libros/${libro._id}`"  class="libro">
         <div class="d-flex">
           <img class="imagen" src="../assets/logo.png" alt="Portada">
           <div>
@@ -110,7 +110,7 @@ export default {
     async obtenerLibros() {
       return axios({
         method: 'get',
-        url: 'http://localhost:8081/tlibros/ver',
+        url: 'http://localhost:8081/libros/ver',
         headers: {
           'Content-Type': 'application/json',
         },
