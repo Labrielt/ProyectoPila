@@ -1,9 +1,8 @@
 const express = require('express');
-const session = require('express-session');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const bodyParser = require('body-parser');
-const crypto = require('crypto');
+const cors = require('cors');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const User = require('./models/user'); 
@@ -12,6 +11,8 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Conexión a MongoDB
 mongoose.connect('mongodb://localhost/Biblioteca', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -30,19 +31,6 @@ passport.use(
   })
 );
 
-const secretKey = crypto.randomBytes(32).toString('hex');
-
-app.use(session({
-  secret: secretKey,
-  resave: true,
-  saveUninitialized: true,
-}));
-
-// Inicializar Passport después de configurar la sesión
-app.use(passport.initialize());
-app.use(passport.session());
-
-// Esto es para realizar ejemplo 
 passport.serializeUser((user, done) => done(null, user.id));
 
 passport.deserializeUser((id, done) => {
@@ -55,6 +43,5 @@ app.use('/api', require('./routes/auth')); // Definir tus rutas de autenticació
 app.use('/api/usuarios', authMiddleware, require('./routes/usuarios'));
 
 // Puerto
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Servidor en ejecución en el puerto ${PORT}`));
-

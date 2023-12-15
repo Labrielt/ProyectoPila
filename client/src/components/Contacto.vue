@@ -1,8 +1,6 @@
 <template>
-    <v-layout style="justify-content: center; display: flex;
-     flex-direction: column;">
-      <v-card style="padding: 5%; width: 80%; display: flex;
-       flex-direction: row; justify-content: space-between; margin-top: 5%;" >
+    <v-layout class="columna_us">
+      <v-card class="us" >
         <div>
           <v-card-title>
             Equipo
@@ -11,38 +9,22 @@
           FullStack1
         </v-card-subtitle>
         </div>
-        <v-card-text style="display: flex; justify-content: space-between;" >
+        <v-card-text class="us_ajuste" >
 
-           <div style="display: flex; flex-direction: column;">
+           <div class="us_items">
             <v-icon>account_circle</v-icon>
-            Cesar Gabriel Zamora Morales 20130849 </div>
+            Alan Gómez Mireles 20130820 </div>
 
-          <div style="display: flex; flex-direction: column;">
+          <div  class="us_items">
           <v-icon>account_circle</v-icon>
           Cesar Gabriel Zamora Morales 20130849 </div>
 
-          <div style="display: flex; flex-direction: column;">
+          <div  class="us_items">
           <v-icon>account_circle</v-icon>
           Cesar Gabriel Zamora Morales 20130849 </div>
         </v-card-text>
       </v-card>
-      <v-card style="padding: 5%; width: 80%; display: flex;
-       flex-direction: row; justify-content: space-between;
-       margin-top: 5%; background-color: gray;" >
-        <v-card-text style="display: flex; justify-content: space-between;" >
-
-           <div style="display: flex; flex-direction: column;">
-            <v-icon>account_circle</v-icon>
-            Cesar Gabriel Zamora Morales 20130849 </div>
-
-          <div style="display: flex; flex-direction: column;">
-          <v-icon>account_circle</v-icon>
-          Cesar Gabriel Zamora Morales 20130849 </div>
-
-          <div style="display: flex; flex-direction: column;">
-          <v-icon>account_circle</v-icon>
-          Cesar Gabriel Zamora Morales 20130849 </div>
-        </v-card-text>
+      <v-card style="background-color: gray;" class="us_2 mt-10" >
         <div>
           <v-card-title>
             Equipo
@@ -51,6 +33,20 @@
           FullStack1
         </v-card-subtitle>
         </div>
+        <v-card-text class="us_ajuste" >
+
+           <div class="us_items">
+            <v-icon>account_circle</v-icon>
+            alanyahir63@gmail.com </div>
+
+          <div class="us_items">
+          <v-icon>account_circle</v-icon>
+          alu.20130849 @correo.itlalaguna.edu.mx </div>
+
+          <div class="us_items">
+          <v-icon>account_circle</v-icon>
+          cesargabrielzamoramorales @gmail.com </div>
+        </v-card-text>
       </v-card>
     </v-layout>
 </template>

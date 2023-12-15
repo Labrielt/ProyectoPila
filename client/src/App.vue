@@ -1,7 +1,7 @@
 <template  >
   <v-app id="inspire" style="background-color:  black;">
     <v-navigation-drawer fixed v-model="drawer"
-     app style="background-color:  rgba(137, 137, 137, 0.13);  color: white;">
+     app style="background-color: rgba(173, 173, 173, 0.288);  color: white;">
         <v-list  dense>
 
         <router-link v-bind:to="{name: 'Inicio'}" class="side_bar_link">

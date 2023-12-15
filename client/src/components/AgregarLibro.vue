@@ -1,8 +1,8 @@
 <template>
   <v-layout align-center justify-center>
-    <v-flex xs6 >
+    <v-flex  xs12 md10 lg8  mt-10>
       <v-card >
-          <v-card-title class="titulo_azul">Agregar Libro</v-card-title>
+          <v-card-title class="titulo_form">Agregar Libro</v-card-title>
           <v-card-text>
             <v-form v-model="valido" ref="formulario" lazy-validation>
               <v-text-field
@@ -113,7 +113,7 @@ export default {
     autor: '',
     isbn: '',
     genero: '',
-    idoma: '',
+    idioma: '',
     precio: '',
     paginas: '',
     anhopub: '',
@@ -156,20 +156,26 @@ export default {
         return axios({
           method: 'post',
           data: {
-            nombre: this.nombre,
+            titulo: this.titulo,
             sinopsis: this.sinopsis,
-            anhopub: this.anhopub,
+            autor: this.autor,
+            isbn: this.isbn,
             genero: this.genero,
+            idioma: this.idioma,
+            precio: this.precio,
+            paginas: this.paginas,
+            anhopub: this.anhopub,
+            editorial: this.editorial,
           },
-          url: 'http://localhost:8081/peliculas',
+          url: 'http://localhost:8081/libros',
           headers: {
             'Content-Type': 'application/json',
           },
         })
           .then(() => {
             this.$swal(
-              'Grandioso!',
-              'Pelicula Guardada satisfactoriamentos',
+              'Maravilloso!',
+              'Libro Guardado satisfactoriamente',
               'success',
             );
             this.$router.push({ name: 'Inicio' });

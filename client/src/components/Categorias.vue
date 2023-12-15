@@ -1,12 +1,12 @@
-<template>
+<template >
   <v-layout row wrap >
     <v-tabs >
-      <v-tab style="background-color: black; color: white;"
+      <v-tab class="dark"
        v-for="categoria in categorias" :key="categoria.id">
         {{ categoria.nombre }}
       </v-tab>
 
-      <v-tab-item style="background-color: black; color: white;"
+      <v-tab-item  class="dark"
        v-for="categoria in categorias" :key="categoria.nombre">
         <v-layout row wrap style="padding: 10px;">
           <v-flex v-for="subcategoria in paginatedSubcategorias"
@@ -26,7 +26,7 @@
         </v-layout>
       </v-tab-item>
     </v-tabs>
-    <v-pagination v-model="currentPage" style="margin-top: 5%;"
+    <v-pagination v-model="currentPage" class="mt-5"
     :length="Math.ceil(subcategorias.length / itemsPerPage)"></v-pagination>
   </v-layout>
 </template>
