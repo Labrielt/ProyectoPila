@@ -13,6 +13,6 @@ router.get('/autores', librosController.getAutores);
 router.get('/editoriales', librosController.getEditoriales);
 router.get('/idiomas', librosController.getIdiomas);
 router.get('/generos', librosController.getGeneros);
-router.post('/', librosController.createLibro);
+router.post('/anadir', librosController.createLibro);
 
 module.exports = router;

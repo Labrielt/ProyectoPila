@@ -30,7 +30,7 @@ app.post('/libros', async (req, res) => {
     }
 });
  
-app.use('/tlibros', librosRouter);
+app.use('/libros', librosRouter);
 const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => {
   console.log(`Servidor en ejecución en el puerto ${PORT}`);
