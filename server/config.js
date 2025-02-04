@@ -7,9 +7,10 @@ module.exports = {
   DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
   DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
   DISCORD_CLIENT_REDIRECT: process.env.DISCORD_CLIENT_REDIRECT || '/auth/redirect',
+  LriocJqEZ47nWKTH
 };*/
 
 module.exports = {
-    mongoURI: 'mongodb://alangm16:16092002Agmi.@localhost:27017/Biblioteca'
+    mongoURI: 'mongodb+srv://shalomsalazar2002:LriocJqEZ47nWKTH@biblioteca.oxysb.mongodb.net/?retryWrites=true&w=majority&appName=Biblioteca'
 };
 
